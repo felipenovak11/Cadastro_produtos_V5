@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Estoque - POO</title>
+
+    <!-- Bootstrap 5 (CSS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="topo">
+            <h1>Cadastro de Produtos</h1>
+
+            <button type="button" id="btn-info-bootstrap" class="btn-info-bootstrap" data-bs-toggle="modal"
+                data-bs-target="#modal-bootstrap">
+                O que é Bootstrap?
+            </button>
+        </div>
+
+        <form id="produto-form" novalidate>
+            <div class="form-group">
+                <label for="nome">Nome do produto:</label>
+                <div class="autocomplete">
+                    <input type="text" id="nome" placeholder="Ex.: Notebook" autocomplete="off" required>
+                    <ul id="sugestoes" class="sugestoes"></ul>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="preco">Preço (R$):</label>
+                <input type="number" id="preco" min="0.01" step="0.01" placeholder="3500.00" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" min="1" step="1" placeholder="5" required>
+            </div>
+
+            <div class="form-acoes">
+                <button type="submit" class="btn-primary" id="btn-salvar">
+                    Adicionar Produto
+                </button>
+
+                <button type="button" id="btn-cancelar-edicao" class="btn-cancelar" hidden>
+                    Cancelar edição
+                </button>
+            </div>
+        </form>
+
+        <div class="resumo-container">
+            <h3 id="total-estoque">Total em estoque: R$ 0,00</h3>
+
+            <button type="button" id="limpar-tabela" class="btn-danger">
+                Limpar Tudo
+            </button>
+        </div>
+
+        <table id="tabela-produtos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço Un.</th>
+                    <th>Quantidade</th>
+                    <th>Subtotal</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Toasts (avisos rápidos que somem sozinhos) -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="toast-container" aria-live="polite"
+        aria-atomic="true"></div>
+
+
+    <!-- Modal de confirmação (substitui o confirm) -->
+    <div class="modal fade" id="modal-confirmacao" tabindex="-1" aria-labelledby="confirmacao-titulo"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacao-titulo">Confirmar ação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="confirmacao-mensagem"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmacao-ok">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal explicando o Bootstrap -->
+    <div class="modal fade" id="modal-bootstrap" tabindex="-1" aria-labelledby="bootstrap-titulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bootstrap-titulo">O que é Bootstrap?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Bootstrap é um framework gratuito de HTML, CSS e JavaScript que traz componentes
+                        prontos (botões, modais, avisos, grades) para criar telas bonitas e responsivas
+                        sem escrever tudo do zero.
+                    </p>
+                    <p class="mb-0">
+                        <strong>Neste projeto ele cuida de:</strong>
+                    </p>
+                    <ul class="mb-0">
+                        <li><strong>Toasts:</strong> avisos rápidos de sucesso, erro e alerta.</li>
+                        <li><strong>Modais:</strong> janelas de confirmação ao remover produtos.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entendi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap 5 (JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
